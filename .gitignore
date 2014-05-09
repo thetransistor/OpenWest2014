@@ -213,3 +213,5 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+BoardCode/OpenWest2014.elf
+BoardCode/openwestkit.hex
