@@ -22,13 +22,13 @@ This is the list of parts that should be included in every kit. If you are missi
 - 1x Microcontroller
   - This is an Attiny85 microcontroller. 
   - Specifications available: http://www.atmel.com/devices/attiny85.aspx
+  - Pre-flashed with our code
 - 1x PCB
 - 1x USB Cable
 - 1x Printout
 
 ##### Notes
 - Please use one of the included 1uF capacitors in the 4uF location. The design was changed last minute to make kit building and part sourcing easier.
-
 
 ##### Credits
 - PCB Designed by Devino. Thanks!
