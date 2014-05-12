@@ -24,6 +24,7 @@ There are 2-3 ways that you can utilize this project
 ##### Using this Kit with Python / C
 1. Get the libusb Driver installed. 
   * Available at either http://www.libusb.org/ or http://digistump.com
+  * On Windows, you can follow these instructions (Device Driver Installation): http://sourceforge.net/apps/trac/libusb-win32/wiki
 2. Install the PyUSB library (get Python 2.7 is you don't already)
   * https://github.com/walac/pyusb
 3. DigiSpark USB Python Library for libusb 
