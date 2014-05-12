@@ -25,6 +25,7 @@ There are 2-3 ways that you can utilize this project
 1. Get the libusb Driver installed. 
   * Available at either http://www.libusb.org/ or http://digistump.com
   * OS X users can install it using homebrew: `brew install libusb`. If you don't have homebrew installed already, instructions can be found here: http://brew.sh/#install
+  * On Windows, you can follow these instructions (Device Driver Installation): http://sourceforge.net/apps/trac/libusb-win32/wiki
 2. Install the PyUSB library (get Python 2.7 is you don't already)
   * https://github.com/walac/pyusb
   * OS X users can install pyusb by doing the following: `git clone https://github.com/walac/pyusb.git; cd pyusb; python setup.py install`
