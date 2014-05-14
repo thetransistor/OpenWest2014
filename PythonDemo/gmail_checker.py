@@ -75,6 +75,8 @@ while (1):
                 first_entry_node = _xml.getElementsByTagName("entry")[0]
                 first_entry_link_node = first_entry_node.getElementsByTagName("link")[0]
                 first_entry_link = first_entry_link_node.attributes["href"].value
+			else:
+				new_emails = False
 
         except urllib2.URLError, e:
             print e.read()
