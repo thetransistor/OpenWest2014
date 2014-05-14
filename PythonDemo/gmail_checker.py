@@ -45,7 +45,13 @@ while (1):
         for code in openwestkit.readData():
             if code == 'a' or code == 'b':
                 # open browser window
-                webbrowser.open(first_entry_link, 2)
+                new_emails = False
+                try:
+                    # try to invoke a browser
+                    webbrowser.open(first_entry_link, 2)
+                except:
+                    pass
+
     else:
         # no new emails, let's reset the pixel and angle
         openwestkit.setPixel(0, 0, 0, 0)
