@@ -1,4 +1,5 @@
-# Fading lights - use buttons to enable and disable
+# Gmail Checker - Glows when you have unread emails
+# Click button "a" or "b" to open a browser to first unread email (limited support)
 import signal
 import sys
 import time
