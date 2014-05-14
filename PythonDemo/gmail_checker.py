@@ -45,7 +45,13 @@ while (1):
         for code in openwestkit.readData():
             if code == 'a' or code == 'b':
                 # open browser window
-                webbrowser.open(first_entry_link, 2)
+                new_emails = False
+                try:
+                    # try to invoke a browser
+                    webbrowser.open(first_entry_link, 2)
+                except:
+                    pass
+
     else:
         # no new emails, let's reset the pixel and angle
         openwestkit.setPixel(0, 0, 0, 0)
@@ -75,6 +81,8 @@ while (1):
                 first_entry_node = _xml.getElementsByTagName("entry")[0]
                 first_entry_link_node = first_entry_node.getElementsByTagName("link")[0]
                 first_entry_link = first_entry_link_node.attributes["href"].value
+            else:
+                new_emails = False
 
         except urllib2.URLError, e:
             print e.read()
