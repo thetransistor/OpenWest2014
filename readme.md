@@ -29,11 +29,12 @@ There are 2-3 ways that you can utilize this project
 2. Install the PyUSB library (get Python 2.7 is you don't already)
   * https://github.com/walac/pyusb
   * OS X users can install pyusb by doing the following: `git clone https://github.com/walac/pyusb.git; cd pyusb; python setup.py install`
-3. DigiSpark USB Python Library for libusb 
+3. Copy the DigiSpark USB Python Library for libusb arduino folder into your PythonDemo folder
   * https://github.com/digistump/DigisparkExamplePrograms/tree/master/Python/DigiUSB/source/arduino
 4. Plug in your OpenWest Kit and wait for it to fully boot (about 6 seconds)
   * This is because there is a 5 second boot delay programmed into the micronucleus bootloader.
-5. Start the OpenWestKitDemo.py that's located in the PythonDemo folder
+5. Start a demo that's located in the PythonDemo folder
+  * python brightness.py
   * Apologies for the terrible code, lack of time / sleep was a factor here. :S
 6. Modify the demo code
   * Send us your improved code so we can post it.
