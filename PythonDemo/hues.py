@@ -21,7 +21,7 @@ OFFSET = 0.10
 BUTTON_RATE = 0.01
 
 # How long to sleep before updating the next LED
-SPEED = 0.01
+SPEED = 0.02
 
 
 def handle_signal(signal, frame):
@@ -45,8 +45,11 @@ def get_rgb(hue=0, pixelNum=0):
 def adjust_rate(code, rate):
     """Adjusts the rate by which the pixels change their hue."""
     # 'b' is the left button. 'a' is the right.
-    return rate + (BUTTON_RATE if code == 'b' else 
-                   (-BUTTON_RATE if code == 'a' else 0))
+    lr = rate + (BUTTON_RATE if code == 'b' else
+                 (-BUTTON_RATE if code == 'a' else 0))
+    if -0.005 < lr < 0.005:
+        lr = 0
+    return lr
 
 
 def init():
@@ -63,12 +66,17 @@ if __name__ == "__main__":
 
     hue = 0
     rate = 0.01
-
+    # Set an out-of-band old rate to trigger a message on first time through
+    # event loop.
+    oldrate = 100
     while (1):
         # Check for button presses
         for code in openwestkit.readData():
             rate = adjust_rate(code, rate)
-
+            if rate != oldrate:
+              oldrate = rate
+              print "button rate", rate
+            
         for pixelNum in range(0, 4):
             (r, g, b) = get_rgb(hue, pixelNum)
             openwestkit.setPixel(pixelNum, r, g, b)
