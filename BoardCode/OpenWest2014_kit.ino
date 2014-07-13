@@ -32,6 +32,8 @@ int commandBuffer[8];
 int commandBufferPos = -1;
 long lastButton1; // button1 debounce counter
 long lastButton2; // button2 debounce counter
+long lastButton1up; // button1 release debounce counter 
+long lastButton2up; // button2 release debounce counter
 
 // Setup the "NeoPixel strip".
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(4, PIXELPIN, NEO_GRB + NEO_KHZ800);
@@ -64,14 +66,27 @@ void loop() {
 		process_buffer();	// Process the USB buffer
 		
 		// Check Pushbutton 1
-		if(process_pushbutton1()){
+
+		if(process_pushbutton(digitalRead(BUTTON1), lastButton1)){
 			DigiUSB.write('a');
 		}
 		
 		// Check Pushbutton 2
-		if(process_pushbutton2()){
+		if(process_pushbutton(digitalRead(BUTTON2), lastButton2)){
 			DigiUSB.write('b');
 		}
+
+		// Check Pushbutton 1 up
+		if(process_pushbutton(!digitalRead(BUTTON1), lastButton1up)){
+			DigiUSB.write('A');
+		}
+		
+		// Check Pushbutton 2 up
+		if(process_pushbutton(!digitalRead(BUTTON2), lastButton2up)){
+			DigiUSB.write('B');
+		}
+
+
 	}
 }
 
@@ -145,44 +160,23 @@ void process_buffer(){
 	}
 }
 
-// FUNCTION: process_pushbutton1()
-// PURPOSE: Debounce pushbutton 1
-bool process_pushbutton1(){
-	if(digitalRead(BUTTON1)){
-		if(lastButton1>0){
-			if(millis() > lastButton1 + DTIME) {
-				lastButton1 = 0; // Stop reporting button pressed, until button is reset
+// FUNCTION: process_pushbutton(active, timestamp)
+// PURPOSE: Debounce pushbutton
+bool process_pushbutton(int state, long &timestamp){
+	if(!state){
+		if(timestamp > 0){
+			if(millis() > timestamp + DTIME) {
+				timestamp = 0; // Stop reporting button pressed, until button is reset
 				return true;
 			} else {
 				return false;
 			}
 		} else {
-			if(lastButton1== -1) lastButton1 = millis(); // Wait for reset, before counting again...
+			if(timestamp == -1) timestamp = millis(); // Wait for reset, before counting again...
 			return false;
 		}
 	} else {
-		lastButton1 = -1; // Reset / Stage for next press
-		return false;
-	}
-}
-
-// FUNCTION: process_pushbutton2()
-// PURPOSE: Debounce pushbutton 2
-bool process_pushbutton2(){
-	if(digitalRead(BUTTON2)){
-		if(lastButton2>0){
-			if(millis() > lastButton2 + DTIME) {
-				lastButton2 = 0; // Stop reporting button pressed, until button is reset
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			if(lastButton2== -1) lastButton2 = millis(); // Wait for reset, before counting again...
-			return false;
-		}
-	} else {
-		lastButton2 = -1; // Reset / Stage for next press
+		timestamp = -1; // Reset / Stage for next press
 		return false;
 	}
 }
