@@ -29,6 +29,8 @@ There are 2-3 ways that you can utilize this project
 2. Install the PyUSB library (get Python 2.7 is you don't already)
   * https://github.com/walac/pyusb
   * OS X users can install pyusb by doing the following: `git clone https://github.com/walac/pyusb.git; cd pyusb; python setup.py install`
+  * OS X or Linux users of pip can use `pip install pyusb`
+  * apt-get remove python-usb if you get an error "module object has no attribute util"
 3. Copy the DigiSpark USB Python Library for libusb arduino folder into your PythonDemo folder
   * https://github.com/digistump/DigisparkExamplePrograms/tree/master/Python/DigiUSB/source/arduino
 4. Plug in your OpenWest Kit and wait for it to fully boot (about 6 seconds)
